@@ -38,29 +38,29 @@
 
       <div class="main_content">
         <%= form_with(model: @blog, url: blogs_path, local: true) do |form| %>
-          <%= form.hidden_field :image %>
           <%= form.hidden_field :content %>
 
           <div class="confirm_content">
-            <div class="entry_content">
+            <div class="blog_confirm_image">
               <label>添付画像</label>
-              <!---画像添付--->
-              <%= @blog.image %>
+              <%= image_tag @blog.image,class:"confirm_image" %>
+              <%= hidden_field_tag :"cache[image]",@blog.image.cache_name %>
             </div>
-            <div class="entry_content">
+            <div class="blog_confirm_content">
               <label>投稿内容</label>
               <%= @blog.content %>
             </div>
 
             <div class="btn-group">
-              <%= form.submit  "投稿する",class:"btn btn-default" %>
+              <%= form.submit "投稿する",class:"btn btn-default" %>
             </div>
-          </div>
+          </div><!--- End of confirm_content --->
         <% end %>
 
-        <div class="return_content">
+        <div class="return_blog_new">
           <%= form_with(model: @blog, url: new_blog_path, local: true, method: 'get') do |form| %>
             <%= form.hidden_field :content %>
+            <%= hidden_field_tag :"cache[image]",@blog.image.cache_name %>
             <div class="btn-group">
               <%= form.submit "もどる", name: 'back',class:"btn btn-default" %>
             </div>

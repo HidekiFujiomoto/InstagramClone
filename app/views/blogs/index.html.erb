@@ -36,14 +36,11 @@
         <div class="row">
           <table>
             <% @blogs.each do |blog| %>
-              <tr class="text-right">
+              <tr class="detail_btn">
                 <td><%= link_to "詳細", blog_path(blog.id) %></td>
               </tr>
               <tr class="blog_content">
-                <td>投稿者：<%= @user_name %></td>
-              </tr>
-              <tr class="blog_content">
-                <td><%= blog.image %></td>
+                <td><%= image_tag blog.image %></td>
               </tr>
               <tr class="blog_content">
                 <td><%= blog.content %></td>

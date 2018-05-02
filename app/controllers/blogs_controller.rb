@@ -8,6 +8,7 @@ class BlogsController < ApplicationController
   def new
     if params[:back]
       @blog = Blog.new(blog_params)
+      @blog.image.retrieve_from_cache! params[:cache][:image]
     else
       @blog = Blog.new
     end
@@ -15,15 +16,19 @@ class BlogsController < ApplicationController
 
   def create
     @blog = Blog.new(blog_params)
+    @blog.image.retrieve_from_cache! params[:cache][:image]
     @blog.user_id = current_user.id
     if @blog.save(blog_params)
       redirect_to blogs_path,notice:"新規投稿しました！"
+      @user_email = @blog.user.email
+      InstaMailer.send_email(@user_email).deliver
     else
       render "new"
     end
   end
 
   def show
+    @user_name = @blog.user.name
     @favorite = current_user.favorites.find_by(blog_id: @blog.id)
   end
 
@@ -52,7 +57,7 @@ class BlogsController < ApplicationController
 
   private
   def blog_params
-    params.require(:blog).permit(:image,:content)
+    params.require(:blog).permit(:image,:content,:image_cache)
   end
 
   def set_blog

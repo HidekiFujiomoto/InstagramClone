@@ -18,5 +18,7 @@ class Blog < ApplicationRecord
   # アソシエーション設定一対多の一側
   has_many :users
 
+  # imageカラムにImageUploaderを紐付け
+  mount_uploader :image, ImageUploader
 
 end

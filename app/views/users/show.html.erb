@@ -27,15 +27,31 @@
 
       <div class="content">
 
-        <section class="preamble">
-          <h3><%= @user.name %>のページ</h3><br>
-          <p>メールアドレス<br><%= @user.email %></p>
-          <p>ユーザーID<br><%= @user.id %></p>
-          <p>プロフィール画像<br><!--- 画像表示 ---></p>
+        <section class="user_profile">
+          <h3><%= @user.name %>のページ</h3>
+          <%= form_with(model: @user, local: true) do |form| %>
+            <div class="user_profile_image">
+              <%= form.label "プロフィール画像" %>
+              <%= image_tag @user.image %>
+              <p>↓画像を変更する
+              <%= form.file_field :image %></p>
+              <%= form.hidden_field :image_cache %>
+            </div>
+            <div class="user_profile_email">
+              <label>登録メールアドレス</label>
+              <%= @user.email %>
+            </div>
+            <div>
+              <%= form.submit %>
+            </div>
+          <% end %>
         </section>
 
-        <section>
-          <!--- お気に入り一覧 --->
+        <section class="user_profile">
+          <h3>お気に入り投稿一覧</h3>
+          <% @favorites_blogs.each do |favorites_blog| %>
+            <p class="favorite_blog_image"><%= image_tag favorites_blog.image %></p>
+          <% end %>
         </section>
 
       </div> <!--End of content-->

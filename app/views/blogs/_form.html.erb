@@ -11,21 +11,22 @@
     </div>
   <% end %>
 
-  <div class="blog_title">
+  <div class="blog_new_image">
     <%= form.label :image %>
-    <%= form.text_field :image %>
+    <%= form.file_field :image %>
+    <%= form.hidden_field :image_cache %>
   </div>
 
-  <div class="blog_title">
+  <div class="blog_new_content">
     <%= form.label :content %>
-    <%= form.text_field :content %>
+    <%= form.text_area :content %>
   </div>
 
-  <div class="btn">
+  <div class="btn blog_new_btn">
     <%= form.submit %>
   </div>
 
-  <div>
+  <div class="return_index">
     <%= link_to '投稿一覧画面にもどる', blogs_path %>
   </div>
 

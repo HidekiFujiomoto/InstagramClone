@@ -13,7 +13,12 @@ class User < ApplicationRecord
 
   # アソシエーション：多対多の多側
   has_many :favorites, dependent: :destroy
+  has_many :favorites_blogs, through: :favorites, source: :blog
 
   # アソシエーション設定一対多の一側
   has_many :blogs, dependent: :destroy
+
+  # imageカラムにImageUploaderを紐付け
+  mount_uploader :image, ImageUploader
+
 end
