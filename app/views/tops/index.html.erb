@@ -1,0 +1,45 @@
+
+
+  <body>
+    <div class="container">
+
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/">InstagramClone</a>
+          </div>
+
+      </nav>
+
+      <div class="content">
+        <section>
+          <img src="/assets/insta_cover.jpg">
+        </section>
+
+        <section class="preamble">
+          <h3>このアプリケーションについて</h3>
+          <p>InstagramClone...写真でいまの状況を伝えられる...<br>
+            インスタグラムを真似したテストアプリです。</p>
+        </section>
+
+        <section class="btn-group btn-group-justified" role="group">
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default">
+              <%= link_to "Sign up", new_user_path %>
+            </button>
+          </div>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default">
+              <%= link_to "Login", new_session_path %>
+            </button>
+          </div>
+        </section>
+
+      </div> <!--End of content-->
+
+      <footer class="footer">
+        <p>Hideki Fujimoto test application</p>
+      </footer>
+    </div>
+  </body>

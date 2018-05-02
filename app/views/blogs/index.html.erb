@@ -1,0 +1,77 @@
+
+
+<body>
+  <div class="container">
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#gnavi">
+            <span class="sr-only">InstagramClone</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to "InstagramClone", user_path(current_user.id), class: "navbar-brand" %>
+        </div>
+        <div id="gnavi" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/blogs/new">新規投稿</a></li>
+            <li><a href="/blogs">投稿一覧</a></li>
+            <li><%= link_to "マイページ", user_path(current_user.id) %></li>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+
+    <div class="content">
+
+      <div class="main_content">
+        <div class="page_title">
+          <h3>投稿一覧</h3>
+        </div>
+
+        <div class="row">
+          <table>
+            <% @blogs.each do |blog| %>
+              <tr class="text-right">
+                <td><%= link_to "詳細", blog_path(blog.id) %></td>
+              </tr>
+              <tr class="blog_content">
+                <td>投稿者：<%= @user_name %></td>
+              </tr>
+              <tr class="blog_content">
+                <td><%= blog.image %></td>
+              </tr>
+              <tr class="blog_content">
+                <td><%= blog.content %></td>
+              </tr>
+              <% if blog.user_id == current_user.id %>
+                <tr class="content_buttom">
+                  <td>
+                    <%= link_to "編集する", edit_blog_path(blog.id) ,class: "btn btn-default col-md-6 col-xs-12" %>
+                    <%= link_to '削除する', blog_path(blog.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } ,class: "btn btn-default col-md-6 col-xs-12" %>
+                  </td>
+                </tr>
+              <% else %>
+              <% end %>
+          <% end %>
+        </table>
+      </div>
+
+      <div class="content-center page_btn">
+        <div class="btn-group">
+          <%= link_to '新しく投稿する', new_blog_path ,class: "btn btn-default" %>
+        </div>
+      </div>
+
+    </div>
+    </div> <!--End of content-->
+
+    <footer class="footer">
+      <p>Hideki Fujimoto test application</p>
+    </footer>
+  </div>
+</body>

@@ -1,0 +1,32 @@
+
+<body>
+  <div class="container">
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">InstagramClone</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="content">
+
+      <div class="session_content">
+        <h3>ログイン</h3>
+        <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+          <%= f.label :email %>
+          <%= f.email_field :email %><br>
+          <%= f.label :password %>
+          <%= f.password_field :password %><br>
+          <%= f.submit "Log in", class: "btn btn-default" %>
+        <% end %>
+      </div>
+
+    </div><!--End of content-->
+
+    <footer class="footer">
+      <p>Hideki Fujimoto test application</p>
+    </footer>
+  </div><!--End of container-->
+</body>

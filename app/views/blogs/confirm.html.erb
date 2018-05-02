@@ -1,0 +1,77 @@
+
+
+<body>
+  <div class="container">
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#gnavi">
+            <span class="sr-only">InstagramClone</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to "InstagramClone", user_path(current_user.id), class: "navbar-brand" %>
+        </div>
+        <div id="gnavi" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/blogs/new">新規投稿</a></li>
+            <li><a href="/blogs">投稿一覧</a></li>
+            <li><%= link_to "マイページ", user_path(current_user.id) %></li>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+
+    <div class="content">
+
+      <div class="notice">
+        <p></p>
+      </div>
+
+      <div class="page_title">
+        <h2>以下の内容で投稿しますか？</h2>
+      </div>
+
+      <div class="main_content">
+        <%= form_with(model: @blog, url: blogs_path, local: true) do |form| %>
+          <%= form.hidden_field :image %>
+          <%= form.hidden_field :content %>
+
+          <div class="confirm_content">
+            <div class="entry_content">
+              <label>添付画像</label>
+              <!---画像添付--->
+              <%= @blog.image %>
+            </div>
+            <div class="entry_content">
+              <label>投稿内容</label>
+              <%= @blog.content %>
+            </div>
+
+            <div class="btn-group">
+              <%= form.submit  "投稿する",class:"btn btn-default" %>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="return_content">
+          <%= form_with(model: @blog, url: new_blog_path, local: true, method: 'get') do |form| %>
+            <%= form.hidden_field :content %>
+            <div class="btn-group">
+              <%= form.submit "もどる", name: 'back',class:"btn btn-default" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+    </div> <!--End of container-->
+
+    <footer class="footer">
+      <p>Hideki Fujimoto test application</p>
+    </footer>
+  </div>
+</body>
